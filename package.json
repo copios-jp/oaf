@@ -1,0 +1,30 @@
+{
+  "name": "oaf",
+  "version": "0.0.0",
+  "description": "poppet server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=oaf nodemon index.js"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@koa/cors": "^3.0.0",
+    "debug": "^4.1.1",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "mediasoup": "^3.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/register": "^7.8.6",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1"
+  }
+}
