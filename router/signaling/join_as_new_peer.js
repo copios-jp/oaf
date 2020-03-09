@@ -19,6 +19,7 @@ export default {
         consumerLayers: {},
         stats: {},
       }
+      log('join new peer', peerId)
 
       ctx.body = { routerRtpCapabilities: router.rtpCapabilities }
     } catch (e) {

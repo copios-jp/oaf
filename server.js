@@ -3,14 +3,20 @@
 import Koa from 'koa'
 import cors from '@koa/cors'
 import logger from 'koa-logger'
-
+import koaBody from 'koa-body'
 import debugModule from 'debug'
 import https from 'https'
 import fs from 'fs'
 import config from './config'
 import roomState from './room_state'
 import { err, warn, log } from './debug'
-import mediaSoup, { worker, router, audioLevelObserver, updatePeerStats } from './media_soup'
+import mediaSoup, {
+  worker,
+  router,
+  audioLevelObserver,
+  updatePeerStats,
+  closePeer,
+} from './media_soup'
 import koaRouter from './router'
 const koaApp = new Koa()
 let httpsServer
@@ -31,7 +37,7 @@ async function main() {
       ctx.app.emit('error', err, ctx)
     }
   })
-
+  koaApp.use(koaBody())
   koaApp.use(cors({ credentials: true }))
   koaApp.use(logger())
   try {

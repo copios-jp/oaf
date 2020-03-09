@@ -7,17 +7,15 @@ export default {
 
   method: POST,
 
-  async process(req, res) {
-    const { peerId } = req
-    log('leave', peerId)
+  async process(ctx) {
+    // Manual JSON parsing as this come in via navigator.beacon and does not have a content type header for koa-body to figure out.
+    const { peerId } = ctx.request.body
     try {
       await closePeer(peerId)
-      res.send({
-        left: true,
-      })
+      ctx.body = { left: true }
     } catch (e) {
       err(e)
-      res.send({ error: e })
+      ctx.body = { error: e }
     }
   },
 }

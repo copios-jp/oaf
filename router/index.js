@@ -22,7 +22,7 @@ const router = new Router()
 
 signaling.forEach((route) => {
   const { method, endpoint, process } = route
-  router[method](endpoint, koaBody(), process)
+  router[method](endpoint, process)
 })
 router.get('', (ctx) => {
   ctx.body = 'CHUNKY!!'

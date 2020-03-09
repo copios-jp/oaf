@@ -6,8 +6,8 @@ import { POST, SYNC } from '../../constants'
 export default {
   endpoint: SYNC,
   method: POST,
-  async process(req, res) {
-    const { peerId } = req.body
+  async process(ctx) {
+    const { peerId } = ctx.request.body
 
     const { peers, activeSpeaker } = roomState
 
@@ -18,13 +18,13 @@ export default {
 
       roomState.peers[peerId].lastSeenTs = Date.now()
 
-      res.send({
+      ctx.body = {
         peers,
         activeSpeaker,
-      })
+      }
     } catch (e) {
       err(e)
-      res.send({ error: e })
+      ctx.body = { error: e }
     }
   },
 }
